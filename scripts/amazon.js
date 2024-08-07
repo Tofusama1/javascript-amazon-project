@@ -46,7 +46,7 @@ products.forEach((products) => {
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary js-add-to-cart" data-product-id="${products.id}">
+          <button class="add-to-cart-button button-primary js-add-to-cart js-add-to-cart" data-product-id="${products.id}">
             Add to Cart
           </button>
         </div>
