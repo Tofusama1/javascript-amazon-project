@@ -30,24 +30,29 @@ class Product {
   getPrice(){
     return `$${formatCurrency(this.priceCents)}`;
   }
+
+  extraInfoHTML(){
+    return '';
+  }
 }
 
-/*const product1 = new Product({
-  id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-  image: "images/products/athletic-cotton-socks-6-pairs.jpg",
-  name: "Black and Gray Athletic Cotton Socks - 6 Pairs",
-  rating: {
-    stars: 4.5,
-    count: 87
-  },
-  priceCents: 1090,
-  keywords: [
-    "socks",
-    "sports",
-    "apparel"
-  ]
-});
-console.log(product1);*/
+//clothing will get all of the properties and methods of the Product class
+class Clothing extends Product {
+  sizeChartLink;
+
+  constructor(productDetails) {
+    //super calls the constructor of the parent class which is the product
+    super(productDetails);
+    this.sizeChartLink = productDetails.sizeChartLink;
+  }
+
+  extraInfoHTML(){
+    //super.extraInfoHTML();
+    return `
+      <a href="${this.sizeChartLink}" target = "_blank">Size chart</a>
+    `;
+  }
+}
 
 export const products = [
   {
@@ -709,11 +714,12 @@ export const products = [
     ]
   }
 ].map((productDetails) => {
+  if(productDetails.type === 'clothing'){
+    return new Clothing(productDetails);
+  }
   //we are transforming this object into a class
   return new Product(productDetails);
 });
-
-console.log(products);
 
 
 //map loops through an array and for each value it runs a function
