@@ -53,6 +53,37 @@ class Clothing extends Product {
     `;
   }
 }
+/*
+const date = new Date();
+console.log(date);
+console.log(date.toLocaleTimeString());
+*/
+
+/*
+
+object 2 hasn't been created yet so therefore this.a is undefined
+console.log(this);
+
+const object2 = {
+  a: 2,
+  b: this.a
+};*/
+
+/*function logThis(){
+  console.log(this);
+}
+logThis();
+//.call is the same as running the function except we add an extra parameter in front, the first value is the value of this
+logThis.call(`hello`);
+
+this
+const object3 = {
+  method: () => {
+    console.log(this);
+  }
+};
+
+object3.method(); */
 
 export const products = [
   {
@@ -726,3 +757,10 @@ export const products = [
 
 //how map works is that it will run this function on it and we transform it and then put it inside a new array
 
+/* 
+Summary of "this"
+1) Inside a method, "this" points to the outer object
+2) Inside a function this = undefined But we can change it
+3) Arrow functions do not change the value of "this"
+
+*/
