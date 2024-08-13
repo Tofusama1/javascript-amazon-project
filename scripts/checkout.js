@@ -8,15 +8,37 @@ import { loadCart } from "../data/cart.js";
 //this creates a separate thread of code but this separate thread of code doesn't actually have a next step.
 //Promise.all lets us run multiple promises at the same time and waits for all of them to finish
 
+//async = makes a function return a promise
+async function loadPage() {
+    //console.log('load page');
+
+    await loadProductsFetch();
+
+    const value = await new Promise((resolve) => {
+        loadCart(() => {
+            resolve('value3');
+        });
+    });
+
+    console.log(value);
+    renderOrderSummary();
+    renderPaymentSummary();
+
+
+    //return 'value2'
+}
+loadPage();
+
+/* 
 Promise.all([ //Array of promises
-    /*new Promise((resolve) => { //runs the function immediately
+    new Promise((resolve) => { //runs the function immediately
         //console.log('start promise');
         loadProducts(() => {
             //console.log('finish loading')
             //whatever we give to resolve will be saved in the parameter value (.then((value));)
             resolve('value1');
         });
-    })*/
+    })
     loadProductsFetch(),
     new Promise((resolve) => {
         loadCart(() => {
@@ -28,8 +50,8 @@ Promise.all([ //Array of promises
     console.log(values);
     renderOrderSummary();
     renderPaymentSummary();
-});
-
+}); */
+ 
 /*
 new Promise((resolve) => { //runs the function immediately
     //console.log('start promise');
