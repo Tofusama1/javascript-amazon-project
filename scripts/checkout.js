@@ -11,16 +11,21 @@ import { loadCart } from "../data/cart.js";
 //async = makes a function return a promise
 async function loadPage() {
     //console.log('load page');
-
-    await loadProductsFetch();
-
-    const value = await new Promise((resolve) => {
-        loadCart(() => {
-            resolve('value3');
+    try{
+        //throw 'error1';
+        await loadProductsFetch();
+        const value = await new Promise((resolve, reject) => {
+            //throw 'error 2';
+            loadCart(() => {
+                //reject('error 3');
+                resolve('value3');
+            });
         });
-    });
-
-    console.log(value);
+        console.log(value);
+    
+    } catch (error) {
+        console.log('Unexpected error. Please try again later');
+    }
     renderOrderSummary();
     renderPaymentSummary();
 
