@@ -88,5 +88,20 @@
         </div>
       </div>
     </div>
+
+    <script>
+      const url = new URL(window.location.href);
+      //This gets the parameters
+      //http://127.0.0.1:5500/tracking.html?orderId=123&productId=456
+      console.log(url.searchParams.get('orderId')); //prints 123
+      console.log(url.searchParams.get('productId')); // prints 456
+
+      //URL parameter = let us save data directly in the URL
+      //http://127.0.0.1:5500/tracking.html?orderId=123
+      //This is similar to: 
+      //{
+      //  orderId: '123'
+      //}
+    </script>
   </body>
 </html>
